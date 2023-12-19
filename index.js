@@ -1,6 +1,7 @@
-let application_id = '050744d1881d6e55169c3b169dfa1fde'
+
 import fetch from 'node-fetch';
 import promptSync from 'prompt-sync';
+let application_id = '050744d1881d6e55169c3b169dfa1fde'
 const prompt = promptSync();
 const name = prompt('Enter your username: ');
 const wtier = prompt('Enter wanted tier: ');
@@ -121,15 +122,26 @@ async function getTankStats(tankID){
       returnString+='TD '
     }
     returnString += body1.data[tankID].name;
+    let addedSpace = 30 - body1.data[tankID].name.length;
+    for(let i = 0; i<addedSpace; i++){
+      returnString+=' ';
+    }
     const response2 = await fetch('https://api.wotblitz.com/wotb/account/tankstats/?application_id='+application_id+'&account_id='+id+'&tank_id='+tankID);
     const body2 = await response2.json();
-    //console.log(body2.data[id].all);
     var wr = body2.data[id].all.wins/body2.data[id].all.battles;
     wr = Math.round(wr*10000)/100;
     var admg = body2.data[id].all.damage_dealt/body2.data[id].all.battles;
     admg = Math.round(admg*100)/100;
     returnString += '  Total Battles: '+body2.data[id].all.battles;
+    addedSpace = 20 - ('Total Battles: '+body2.data[id].all.battles).length;
+    for(let i = 0; i<addedSpace; i++){
+      returnString+=' ';
+    }
     returnString += '  Winrate: '+wr + '%';
+    addedSpace = 20 - ('Winrate: '+wr + '%').length;
+    for(let i = 0; i<addedSpace; i++){
+      returnString+=' ';
+    }
     returnString += '  Average Damage: '+admg;
     return returnString;
   }
