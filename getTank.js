@@ -24,9 +24,11 @@ async function getTank(){
   let wtier = document.getElementById('tier').value;
   document.getElementById('textbox').innerHTML = ""+name+" "+wtier;
   id = await userNameToID(name);
+
   bodyData = await getAccountTanks(id);
   await getMainTankStats(bodyData, wtier);
   document.getElementById('textbox').innerHTML = tankA.usa.length+tankA.uk.length+tankA.germany.length+tankA.ussr.length+tankA.france.length+tankA.japan.length+tankA.china.length+tankA.european.length+tankA.other.length+" tanks found";
+  let tableRef = document.getElementById('tankstats')
   var tankListPrint = '';
   tankListPrint+='American<br>';
   for(let index in tankA.usa){
@@ -104,45 +106,57 @@ async function getTank(){
   document.getElementById('textbox').innerHTML = tankListPrint;
 }
 
-async function getTankStats(tankID){
-  var returnString = '';
+async function addRow(table, type, name, battles, wr, admg){
+  let newRow = table.insertRow(-1);
+
+  let newCell1 = newRow.insertCell(0);
+  let newText1 = document.createTextNode(type);
+  newCell1.appendChild(newText1);
+
+  let newCell2 = newRow.insertCell(0);
+  let newText2 = document.createTextNode(name);
+  newCell2.appendChild(newText2);
+
+  let newCell3 = newRow.insertCell(0);
+  let newText3 = document.createTextNode(battles);
+  newCell3.appendChild(newText3);
+
+  let newCell4 = newRow.insertCell(0);
+  let newText4 = document.createTextNode(wr);
+  newCell4.appendChild(newText4);
+
+  let newCell5 = newRow.insertCell(0);
+  let newText5 = document.createTextNode(admg);
+  newCell5.appendChild(newText5);
+}
+
+async function getTankStats(tankID,table){
   const response1 = await fetch('https://api.wotblitz.com/wotb/encyclopedia/vehicles/?application_id='+application_id+'&tank_id='+tankID)
   const body1 = await response1.json();
+  let type = '';
   if(body1.data[tankID].name!==null){
     if(body1.data[tankID].type=='heavyTank'){
-      returnString+='HT '
+      type ='HT';
     }
     if(body1.data[tankID].type=='mediumTank'){
-      returnString+='MT '
+      type ='MT';
     }
     if(body1.data[tankID].type=='lightTank'){
-      returnString+='LT '
+      type ='LT';
     }
     if(body1.data[tankID].type=='AT-SPG'){
-      returnString+='TD '
+      type ='TD';
     }
-    returnString += body1.data[tankID].name;
-    let addedSpace = 30 - body1.data[tankID].name.length;
-    for(let i = 0; i<addedSpace; i++){
-      returnString+=' ';
-    }
+    let name = body1.data[tankID].name;
     const response2 = await fetch('https://api.wotblitz.com/wotb/account/tankstats/?application_id='+application_id+'&account_id='+id+'&tank_id='+tankID);
     const body2 = await response2.json();
+    var battles = body2.data[id].all.battles
     var wr = body2.data[id].all.wins/body2.data[id].all.battles;
     wr = Math.round(wr*10000)/100;
     var admg = body2.data[id].all.damage_dealt/body2.data[id].all.battles;
     admg = Math.round(admg*100)/100;
-    returnString += '  Total Battles: '+body2.data[id].all.battles;
-    addedSpace = 20 - ('Total Battles: '+body2.data[id].all.battles).length;
-    for(let i = 0; i<addedSpace; i++){
-      returnString+=' ';
-    }
-    returnString += '  Winrate: '+wr + '%';
-    addedSpace = 20 - ('Winrate: '+wr + '%').length;
-    for(let i = 0; i<addedSpace; i++){
-      returnString+=' ';
-    }
-    returnString += '  Average Damage: '+admg;
+    addRow(table, type, name, battles, wr, admg);
+
     return returnString;
   }
   else{
