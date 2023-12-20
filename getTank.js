@@ -30,31 +30,31 @@ async function getTank(){
   document.getElementById('textbox').innerHTML = tankA.usa.length+tankA.uk.length+tankA.germany.length+tankA.ussr.length+tankA.france.length+tankA.japan.length+tankA.china.length+tankA.european.length+tankA.other.length+" tanks found";
   let tableRef = document.getElementById('tankstats')
   for(let index in tankA.usa){
-    await getTankStats(tankA.usa[index]);
+    await getTankStats(tankA.usa[index],tableRef);
   }
   for(let index in tankA.uk){
-    await getTankStats(tankA.uk[index]);
+    await getTankStats(tankA.uk[index],tableRef);
   }
   for(let index in tankA.germany){
-    await getTankStats(tankA.germany[index]);
+    await getTankStats(tankA.germany[index],tableRef);
   }
   for(let index in tankA.ussr){
-    await getTankStats(tankA.ussr[index]);
+    await getTankStats(tankA.ussr[index],tableRef);
   }
   for(let index in tankA.france){
-    await getTankStats(tankA.france[index]);
+    await getTankStats(tankA.france[index],tableRef);
   }
   for(let index in tankA.japan){
-    await getTankStats(tankA.japan[index]);
+    await getTankStats(tankA.japan[index],tableRef);
   }
   for(let index in tankA.china){
-    await getTankStats(tankA.china[index]);
+    await getTankStats(tankA.china[index],tableRef);
   }
   for(let index in tankA.european){
-    await getTankStats(tankA.european[index]);
+    await getTankStats(tankA.european[index],tableRef);
   }
   for(let index in tankA.other){
-    await getTankStats(tankA.other[index]);
+    await getTankStats(tankA.other[index],tableRef);
   }
 }
 
