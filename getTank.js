@@ -22,7 +22,7 @@ getTank()
 async function getTank(){
   let name = document.getElementById('name').value;
   let wtier = document.getElementById('tier').value;
-  document.write(name+wtier);
+  document.getElementById('textbox').textContent = ""+name+wtier;
   id = await userNameToID(name);
   bodyData = await getAccountTanks(id);
   await getMainTankStats(bodyData, wtier);
