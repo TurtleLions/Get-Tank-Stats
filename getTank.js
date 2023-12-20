@@ -29,30 +29,88 @@ async function getTank(){
   await getMainTankStats(bodyData, wtier);
   document.getElementById('textbox').innerHTML = tankA.usa.length+tankA.uk.length+tankA.germany.length+tankA.ussr.length+tankA.france.length+tankA.japan.length+tankA.china.length+tankA.european.length+tankA.other.length+" tanks found";
   let tableRef = document.getElementById('tankstats')
+  let newRow = table.insertRow(-1);
+
+  let newCell1 = newRow.insertCell(1);
+  let newText1 = document.createTextNode('Type');
+  newCell1.appendChild(newText1);
+
+  let newCell2 = newRow.insertCell(2);
+  let newText2 = document.createTextNode('Name');
+  newCell2.appendChild(newText2);
+
+  let newCell3 = newRow.insertCell(3);
+  let newText3 = document.createTextNode('Battles');
+  newCell3.appendChild(newText3);
+
+  let newCell4 = newRow.insertCell(4);
+  let newText4 = document.createTextNode('Winrate');
+  newCell4.appendChild(newText4);
+
+  let newCell5 = newRow.insertCell(5);
+  let newText5 = document.createTextNode('Average Damage');
+  newCell5.appendChild(newText5);
+
+  let newRowusa = table.insertRow(-1);
+  let newCellusa = newRowusa.insertCell(0);
+  let newTextusa = document.createTextNode('American');
+  newCellusa.appendChild(newTextusa);
   for(let index in tankA.usa){
     await getTankStats(tankA.usa[index],tableRef);
   }
+  let newRowuk = table.insertRow(-1);
+  let newCelluk = newRowuk.insertCell(0);
+  let newTextuk = document.createTextNode('British');
+  newCelluk.appendChild(newTextuk);
   for(let index in tankA.uk){
     await getTankStats(tankA.uk[index],tableRef);
   }
+  let newRowgermany = table.insertRow(-1);
+  let newCellgermany = newRowgermany.insertCell(0);
+  let newTextgermany = document.createTextNode('German');
+  newCellgermany.appendChild(newTextgermany);
   for(let index in tankA.germany){
     await getTankStats(tankA.germany[index],tableRef);
   }
+  let newRowussr = table.insertRow(-1);
+  let newCellussr = newRowussr.insertCell(0);
+  let newTextussr = document.createTextNode('Soviet');
+  newCellussr.appendChild(newTextussr);
   for(let index in tankA.ussr){
     await getTankStats(tankA.ussr[index],tableRef);
   }
+  let newRowfrance = table.insertRow(-1);
+  let newCellfrance = newRowfrance.insertCell(0);
+  let newTextfrance = document.createTextNode('French');
+  newCellfrance.appendChild(newTextfrance);
   for(let index in tankA.france){
     await getTankStats(tankA.france[index],tableRef);
   }
+  let newRowjapan = table.insertRow(-1);
+  let newCelljapan = newRowjapan.insertCell(0);
+  let newTextjapan = document.createTextNode('Japanese');
+  newCelljapan.appendChild(newTextjapan);
   for(let index in tankA.japan){
     await getTankStats(tankA.japan[index],tableRef);
   }
+  let newRowchina = table.insertRow(-1);
+  let newCellchina = newRowchina.insertCell(0);
+  let newTextchina = document.createTextNode('Chinese');
+  newCellchina.appendChild(newTextchina);
   for(let index in tankA.china){
     await getTankStats(tankA.china[index],tableRef);
   }
+  let newRoweuropean = table.insertRow(-1);
+  let newCelleuropean = newRoweuropean.insertCell(0);
+  let newTexteuropean = document.createTextNode('European');
+  newCelleuropean.appendChild(newTexteuropean);
   for(let index in tankA.european){
     await getTankStats(tankA.european[index],tableRef);
   }
+  let newRowother = table.insertRow(-1);
+  let newCellother = newRowother.insertCell(0);
+  let newTextother = document.createTextNode('Hybrid');
+  newCellother.appendChild(newTextother);
   for(let index in tankA.other){
     await getTankStats(tankA.other[index],tableRef);
   }
@@ -61,23 +119,23 @@ async function getTank(){
 async function addRow(table, type, name, battles, wr, admg){
   let newRow = table.insertRow(-1);
 
-  let newCell1 = newRow.insertCell(0);
+  let newCell1 = newRow.insertCell(1);
   let newText1 = document.createTextNode(type);
   newCell1.appendChild(newText1);
 
-  let newCell2 = newRow.insertCell(0);
+  let newCell2 = newRow.insertCell(2);
   let newText2 = document.createTextNode(name);
   newCell2.appendChild(newText2);
 
-  let newCell3 = newRow.insertCell(0);
+  let newCell3 = newRow.insertCell(3);
   let newText3 = document.createTextNode(battles);
   newCell3.appendChild(newText3);
 
-  let newCell4 = newRow.insertCell(0);
+  let newCell4 = newRow.insertCell(4);
   let newText4 = document.createTextNode(wr);
   newCell4.appendChild(newText4);
 
-  let newCell5 = newRow.insertCell(0);
+  let newCell5 = newRow.insertCell(5);
   let newText5 = document.createTextNode(admg);
   newCell5.appendChild(newText5);
 }
