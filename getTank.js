@@ -28,76 +28,76 @@ async function getTank(){
   await getMainTankStats(bodyData, wtier);
   document.getElementById('textbox').textContent = tankA.usa.length+tankA.uk.length+tankA.germany.length+tankA.ussr.length+tankA.france.length+tankA.japan.length+tankA.china.length+tankA.european.length+tankA.other.length+" tanks found";
   var tankListPrint = '';
-  tankListPrint+='American\n';
+  tankListPrint+='American<br>';
   for(let index in tankA.usa){
     let printstring = await getTankStats(tankA.usa[index]);
     if(printstring!=null){
       tankListPrint+=printstring;
-      tankListPrint+='\n';
+      tankListPrint+='<br>';
     }
   }
-  tankListPrint+='\nBritish\n';
+  tankListPrint+='<br>British<br>';
   for(let index in tankA.uk){
     let printstring = await getTankStats(tankA.uk[index]);
     if(printstring!=null){
       tankListPrint+=printstring;
-      tankListPrint+='\n';
+      tankListPrint+='<br>';
     }
   }
-  tankListPrint+='\nGerman\n';
+  tankListPrint+='<br>German<br>';
   for(let index in tankA.germany){
     let printstring = await getTankStats(tankA.germany[index]);
     if(printstring!=null){
       tankListPrint+=printstring;
-      tankListPrint+='\n';
+      tankListPrint+='<br>';
     }
   }
-  tankListPrint+='\nSoviet\n';
+  tankListPrint+='<br>Soviet<br>';
   for(let index in tankA.ussr){
     let printstring = await getTankStats(tankA.ussr[index]);
     if(printstring!=null){
       tankListPrint+=printstring;
-      tankListPrint+='\n';
+      tankListPrint+='<br>';
     }
   }
-  tankListPrint+='\nFrench\n';
+  tankListPrint+='<br>French<br>';
   for(let index in tankA.france){
     let printstring = await getTankStats(tankA.france[index]);
     if(printstring!=null){
       tankListPrint+=printstring;
-      tankListPrint+='\n';
+      tankListPrint+='<br>';
     }
   }
-  tankListPrint+='\nJapanese\n';
+  tankListPrint+='<br>Japanese<br>';
   for(let index in tankA.japan){
     let printstring = await getTankStats(tankA.japan[index]);
     if(printstring!=null){
       tankListPrint+=printstring;
-      tankListPrint+='\n';
+      tankListPrint+='<br>';
     }
   }
-  tankListPrint+='\nChinese\n';
+  tankListPrint+='<br>Chinese<br>';
   for(let index in tankA.china){
     let printstring = await getTankStats(tankA.china[index]);
     if(printstring!=null){
       tankListPrint+=printstring;
-      tankListPrint+='\n';
+      tankListPrint+='<br>';
     }
   }
-  tankListPrint+='\nEuropean\n';
+  tankListPrint+='<br>European<br>';
   for(let index in tankA.european){
     let printstring = await getTankStats(tankA.european[index]);
     if(printstring!=null){
       tankListPrint+=printstring;
-      tankListPrint+='\n';
+      tankListPrint+='<br>';
     }
   }
-  tankListPrint+='\nHybrid\n';
+  tankListPrint+='<br>Hybrid<br>';
   for(let index in tankA.other){
     let printstring = await getTankStats(tankA.other[index]);
     if(printstring!=null){
       tankListPrint+=printstring;
-      tankListPrint+='\n';
+      tankListPrint+='<br>';
     }
   }
   console.log(tankListPrint);
