@@ -18,6 +18,10 @@ let tankA = {
   other: [],
 };
 
+function textTest(){
+  document.getElementById('textbox').textContent = "working";
+}
+
 getTank()
 async function getTank(){
   let name = document.getElementById('name').value;
