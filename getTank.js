@@ -1,9 +1,9 @@
 //import fetch from 'node-fetch';
-import promptSync from 'prompt-sync';
+//import promptSync from 'prompt-sync';
 let application_id = '050744d1881d6e55169c3b169dfa1fde'
-const prompt = promptSync();
-const name = prompt('Enter your username: ');
-const wtier = prompt('Enter wanted tier: ');
+//const prompt = promptSync();
+//const name = prompt('Enter your username: ');
+//const wtier = prompt('Enter wanted tier: ');
 let id;
 let bodyData;
 let tankA = {
