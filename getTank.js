@@ -19,9 +19,8 @@ let tankA = {
   other: [],
 };
 
-
-
-(async () => {
+getTank()
+async function getTank(){
   id = await userNameToID(name);
   bodyData = await getAccountTanks(id);
   await getMainTankStats(bodyData);
@@ -100,9 +99,8 @@ let tankA = {
     }
   }
   console.log(tankListPrint);
-
-
-})();
+  document.write(tankListPrint")
+}
 
 async function getTankStats(tankID){
   var returnString = '';
