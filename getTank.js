@@ -20,10 +20,10 @@ let tankA = {
 };
 
 getTank()
-async function getTank(){
+async function getTank(name, wtier){
   id = await userNameToID(name);
   bodyData = await getAccountTanks(id);
-  await getMainTankStats(bodyData);
+  await getMainTankStats(bodyData, wtier);
 
   var tankListPrint = '';
   tankListPrint+='American\n';
@@ -99,7 +99,7 @@ async function getTank(){
     }
   }
   console.log(tankListPrint);
-  document.write(tankListPrint")
+  document.write(tankListPrint)
 }
 
 async function getTankStats(tankID){
@@ -161,7 +161,7 @@ async function getAccountTanks(id) {
   return body.data[id];
 }
 
-async function getMainTankStats(bodyData) {
+async function getMainTankStats(bodyData, wtier) {
   for (const singleStat of bodyData) {
     let tankID = singleStat.tank_id;
     const response = await fetch('https://api.wotblitz.com/wotb/encyclopedia/vehicles/?application_id='+application_id+'&tank_id=' + tankID);
