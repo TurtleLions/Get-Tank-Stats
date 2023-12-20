@@ -104,23 +104,23 @@ async function getTank(){
 async function addRow(table, type, name, battles, wr, admg){
   let newRow = table.insertRow(-1);
 
-  let newCell1 = newRow.insertCell(1);
+  let newCell1 = newRow.insertCell(-1);
   let newText1 = document.createTextNode(type);
   newCell1.appendChild(newText1);
 
-  let newCell2 = newRow.insertCell(2);
+  let newCell2 = newRow.insertCell(-1);
   let newText2 = document.createTextNode(name);
   newCell2.appendChild(newText2);
 
-  let newCell3 = newRow.insertCell(3);
+  let newCell3 = newRow.insertCell(-1);
   let newText3 = document.createTextNode(battles);
   newCell3.appendChild(newText3);
 
-  let newCell4 = newRow.insertCell(4);
+  let newCell4 = newRow.insertCell(-1);
   let newText4 = document.createTextNode(wr);
   newCell4.appendChild(newText4);
 
-  let newCell5 = newRow.insertCell(5);
+  let newCell5 = newRow.insertCell(-1);
   let newText5 = document.createTextNode(admg);
   newCell5.appendChild(newText5);
 }
