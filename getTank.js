@@ -29,20 +29,21 @@ async function getTank(){
   document.getElementById('textbox').innerHTML = tankA.usa.length+tankA.uk.length+tankA.germany.length+tankA.ussr.length+tankA.france.length+tankA.japan.length+tankA.china.length+tankA.european.length+tankA.other.length+" tanks found";
   let table = document.getElementById('tankstats')
   let newRow = table.insertRow(-1);
+  let newCell = newRow.insertCell(0);
 
-  let newCell1 = newRow.insertCell(1);
+  let newCell1 = newRow.insertCell(-1);
   newCell1.innerHTML = "<b>Type</b>"
 
-  let newCell2 = newRow.insertCell(1);
+  let newCell2 = newRow.insertCell(-1);
   newCell2.innerHTML = "<b>Name</b>"
 
-  let newCell3 = newRow.insertCell(1);
+  let newCell3 = newRow.insertCell(-1);
   newCell3.innerHTML = "<b>Battles</b>"
 
-  let newCell4 = newRow.insertCell(1);
+  let newCell4 = newRow.insertCell(-1);
   newCell4.innerHTML = "<b>Winrate</b>"
 
-  let newCell5 = newRow.insertCell(1);
+  let newCell5 = newRow.insertCell(-1);
   newCell5.innerHTML = "<b>Average Damage</b>"
 
   let newRowusa = table.insertRow(-1);
@@ -103,6 +104,8 @@ async function getTank(){
 
 async function addRow(table, type, name, battles, wr, admg){
   let newRow = table.insertRow(-1);
+
+  let newCell = newRow.insertCell(0);
 
   let newCell1 = newRow.insertCell(-1);
   let newText1 = document.createTextNode(type);
