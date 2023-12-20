@@ -22,97 +22,82 @@ getTank()
 async function getTank(){
   let name = document.getElementById('name').value;
   let wtier = document.getElementById('tier').value;
-  document.getElementById('textbox').innerHTML = ""+name+" "+wtier;
+  document.getElementById('textbox').innerHTML = "Username: "+name+" Tier: "+wtier;
   id = await userNameToID(name);
-
   bodyData = await getAccountTanks(id);
   await getMainTankStats(bodyData, wtier);
   document.getElementById('textbox').innerHTML = tankA.usa.length+tankA.uk.length+tankA.germany.length+tankA.ussr.length+tankA.france.length+tankA.japan.length+tankA.china.length+tankA.european.length+tankA.other.length+" tanks found";
-  let tableRef = document.getElementById('tankstats')
+  let table = document.getElementById('tankstats')
   let newRow = table.insertRow(-1);
 
   let newCell1 = newRow.insertCell(1);
-  let newText1 = document.createTextNode('Type');
-  newCell1.appendChild(newText1);
+  newCell1.innerHTML = "<b>Type</b>"
 
-  let newCell2 = newRow.insertCell(2);
-  let newText2 = document.createTextNode('Name');
-  newCell2.appendChild(newText2);
+  let newCell2 = newRow.insertCell(1);
+  newCell2.innerHTML = "<b>Name</b>"
 
-  let newCell3 = newRow.insertCell(3);
-  let newText3 = document.createTextNode('Battles');
-  newCell3.appendChild(newText3);
+  let newCell3 = newRow.insertCell(1);
+  newCell3.innerHTML = "<b>Battles</b>"
 
-  let newCell4 = newRow.insertCell(4);
-  let newText4 = document.createTextNode('Winrate');
-  newCell4.appendChild(newText4);
+  let newCell4 = newRow.insertCell(1);
+  newCell4.innerHTML = "<b>Winrate</b>"
 
-  let newCell5 = newRow.insertCell(5);
-  let newText5 = document.createTextNode('Average Damage');
-  newCell5.appendChild(newText5);
+  let newCell5 = newRow.insertCell(1);
+  newCell5.innerHTML = "<b>Average Damage</b>"
 
   let newRowusa = table.insertRow(-1);
   let newCellusa = newRowusa.insertCell(0);
-  let newTextusa = document.createTextNode('American');
-  newCellusa.appendChild(newTextusa);
+  newCellusa.innerHTML = "<b>American</b>"
   for(let index in tankA.usa){
-    await getTankStats(tankA.usa[index],tableRef);
+    await getTankStats(tankA.usa[index],table);
   }
   let newRowuk = table.insertRow(-1);
   let newCelluk = newRowuk.insertCell(0);
-  let newTextuk = document.createTextNode('British');
-  newCelluk.appendChild(newTextuk);
+  newCelluk.innerHTML = "<b>British</b>"
   for(let index in tankA.uk){
-    await getTankStats(tankA.uk[index],tableRef);
+    await getTankStats(tankA.uk[index],table);
   }
   let newRowgermany = table.insertRow(-1);
   let newCellgermany = newRowgermany.insertCell(0);
-  let newTextgermany = document.createTextNode('German');
-  newCellgermany.appendChild(newTextgermany);
+  newCellgermany.innerHTML = "<b>German</b>"
   for(let index in tankA.germany){
-    await getTankStats(tankA.germany[index],tableRef);
+    await getTankStats(tankA.germany[index],table);
   }
   let newRowussr = table.insertRow(-1);
   let newCellussr = newRowussr.insertCell(0);
-  let newTextussr = document.createTextNode('Soviet');
-  newCellussr.appendChild(newTextussr);
+  newCellussr.innerHTML = "<b>Soviet</b>"
   for(let index in tankA.ussr){
-    await getTankStats(tankA.ussr[index],tableRef);
+    await getTankStats(tankA.ussr[index],table);
   }
   let newRowfrance = table.insertRow(-1);
   let newCellfrance = newRowfrance.insertCell(0);
-  let newTextfrance = document.createTextNode('French');
-  newCellfrance.appendChild(newTextfrance);
+  newCellfrance.innerHTML = "<b>French</b>"
   for(let index in tankA.france){
-    await getTankStats(tankA.france[index],tableRef);
+    await getTankStats(tankA.france[index],table);
   }
   let newRowjapan = table.insertRow(-1);
   let newCelljapan = newRowjapan.insertCell(0);
-  let newTextjapan = document.createTextNode('Japanese');
-  newCelljapan.appendChild(newTextjapan);
+  newCelljapan.innerHTML = "<b>Japanese</b>"
   for(let index in tankA.japan){
-    await getTankStats(tankA.japan[index],tableRef);
+    await getTankStats(tankA.japan[index],table);
   }
   let newRowchina = table.insertRow(-1);
   let newCellchina = newRowchina.insertCell(0);
-  let newTextchina = document.createTextNode('Chinese');
-  newCellchina.appendChild(newTextchina);
+  newCellchina.innerHTML = "<b>Chinese</b>"
   for(let index in tankA.china){
-    await getTankStats(tankA.china[index],tableRef);
+    await getTankStats(tankA.china[index],table);
   }
   let newRoweuropean = table.insertRow(-1);
   let newCelleuropean = newRoweuropean.insertCell(0);
-  let newTexteuropean = document.createTextNode('European');
-  newCelleuropean.appendChild(newTexteuropean);
+  newCelleuropean.innerHTML = "<b>European</b>"
   for(let index in tankA.european){
-    await getTankStats(tankA.european[index],tableRef);
+    await getTankStats(tankA.european[index],table);
   }
   let newRowother = table.insertRow(-1);
   let newCellother = newRowother.insertCell(0);
-  let newTextother = document.createTextNode('Hybrid');
-  newCellother.appendChild(newTextother);
+  newCellother.innerHTML = "<b>Hybrid</b>"
   for(let index in tankA.other){
-    await getTankStats(tankA.other[index],tableRef);
+    await getTankStats(tankA.other[index],table);
   }
 }
 
@@ -162,7 +147,7 @@ async function getTankStats(tankID,table){
     const body2 = await response2.json();
     var battles = body2.data[id].all.battles
     var wr = body2.data[id].all.wins/body2.data[id].all.battles;
-    wr = Math.round(wr*10000)/100;
+    wr = (Math.round(wr*10000)/100)+'%';
     var admg = body2.data[id].all.damage_dealt/body2.data[id].all.battles;
     admg = Math.round(admg*100)/100;
     await addRow(table, type, name, battles, wr, admg);
