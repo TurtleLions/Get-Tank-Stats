@@ -22,11 +22,11 @@ getTank()
 async function getTank(){
   let name = document.getElementById('name').value;
   let wtier = document.getElementById('tier').value;
-  document.getElementById('textbox').textContent = ""+name+" "+wtier;
+  document.getElementById('textbox').innerHTML = ""+name+" "+wtier;
   id = await userNameToID(name);
   bodyData = await getAccountTanks(id);
   await getMainTankStats(bodyData, wtier);
-  document.getElementById('textbox').textContent = tankA.usa.length+tankA.uk.length+tankA.germany.length+tankA.ussr.length+tankA.france.length+tankA.japan.length+tankA.china.length+tankA.european.length+tankA.other.length+" tanks found";
+  document.getElementById('textbox').innerHTML = tankA.usa.length+tankA.uk.length+tankA.germany.length+tankA.ussr.length+tankA.france.length+tankA.japan.length+tankA.china.length+tankA.european.length+tankA.other.length+" tanks found";
   var tankListPrint = '';
   tankListPrint+='American<br>';
   for(let index in tankA.usa){
@@ -101,7 +101,7 @@ async function getTank(){
     }
   }
   console.log(tankListPrint);
-  document.getElementById('textbox').textContent = tankListPrint;
+  document.getElementById('textbox').innerHTML = tankListPrint;
 }
 
 async function getTankStats(tankID){
